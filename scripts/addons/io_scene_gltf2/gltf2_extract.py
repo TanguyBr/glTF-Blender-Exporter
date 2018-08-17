@@ -1107,9 +1107,8 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
     #
     sortedMaterials = []
     sortedResult_primitives = []
-    for prim in result_primitives:
-        sortedMaterials.append(prim['material'])
-    sortedMaterials.sort()
+    for mat in blender_mesh.materials:
+         sortedMaterials.append(mat.name)
     index = 0
     size = len(result_primitives)
     while len(sortedResult_primitives) != size:
