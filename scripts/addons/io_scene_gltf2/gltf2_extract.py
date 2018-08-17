@@ -1107,11 +1107,11 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
     #
     sortedMaterials = []
     sortedResult_primitives = []
-    for mat in blender_mesh.materials:
+    for mat in blender_mesh.materials: # Blender already sort materials as user did
          sortedMaterials.append(mat.name)
     index = 0
     size = len(result_primitives)
-    while len(sortedResult_primitives) != size:
+    while len(sortedResult_primitives) != size: # However, how result_primitives is sorted, we create sortedResult_primitives list which has always the same sort
         for prim in result_primitives:
             name = sortedMaterials[index]
             if prim['material'] == name:
