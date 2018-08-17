@@ -1107,7 +1107,7 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
     #
     sortedMaterials = []
     sortedResult_primitives = []
-    for mat in blender_mesh.materials: # Blender already sort materials as user did
+    for mat in blender_mesh.materials: # Blender already sort materials as artist did
          sortedMaterials.append(mat.name)
     index = 0
     size = len(result_primitives)
