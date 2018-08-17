@@ -437,7 +437,7 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
         'attributes' : no_material_attributes
     }
     
-    material_name_to_primitives = {}
+    material_name_to_primitives = {'' : no_material_primitives}
 
     #
     
