@@ -437,7 +437,7 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
         'attributes' : no_material_attributes
     }
     
-    material_name_to_primitives = {'' : no_material_primitives}
+    material_name_to_primitives = {}
 
     #
     
@@ -456,7 +456,6 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
             'POSITION' : [],
             'NORMAL' : []
         }
-        
         if use_tangents:
             attributes['TANGENT'] = []
         
@@ -1094,7 +1093,7 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
                     pending_attributes = pending_primitive['attributes'] 
 
                     print_console('DEBUG', 'Creating temporary primitive for splitting')
-                                
+
         else:
             #
             # No splitting needed.
@@ -1102,7 +1101,26 @@ def extract_primitives(glTF, blender_mesh, blender_vertex_groups, export_setting
             result_primitives.append(primitive)
             
             print_console('DEBUG', 'Adding primitive without splitting. Indices: ' + str(len(primitive['indices'])) + ' Vertices: ' + str(len(primitive['attributes']['POSITION']) // 3))
+        
+    #
+    # Order primitive
+    #
+    sortedMaterials = []
+    sortedResult_primitives = []
+    for prim in result_primitives:
+        sortedMaterials.append(prim['material'])
+    sortedMaterials.sort()
+    index = 0
+    size = len(result_primitives)
+    while len(sortedResult_primitives) != size:
+        for prim in result_primitives:
+            name = sortedMaterials[index]
+            if prim['material'] == name:
+                sortedResult_primitives.append(prim)
+                index += 1
+                break
             
     print_console('INFO', 'Primitives created: ' + str(len(result_primitives)))
+    print("sortedResult_primitives : ", sortedResult_primitives)
     
-    return result_primitives
+    return sortedResult_primitives

@@ -1565,7 +1565,7 @@ def generate_duplicate_mesh(glTF, blender_object):
             else:
                 print_console('WARNING',
                               'Material ' + blender_material_slot.material.name + ' not found. Please assign glTF 2.0 material or enable Blinn-Phong material in export.')
-
+            
         primitive_index += 1
 
     #

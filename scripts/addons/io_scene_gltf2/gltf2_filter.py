@@ -116,7 +116,7 @@ def filter_apply(export_settings):
         
         if skip:
             continue
-            
+    
         filtered_meshes[blender_mesh.name] = current_blender_mesh
         filtered_vertex_groups[blender_mesh.name] = current_blender_object.vertex_groups
         
